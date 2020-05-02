@@ -1,0 +1,49 @@
+<!--
+///////////////////////////////////////
+//                                   //
+//    Author: Max Schwaibold         //
+//    Date:   30.04.2020             //
+//                                   //
+///////////////////////////////////////
+-->
+<tr *ngFor="let movie of movies">
+  <td><img [src]="movie.imageUrl" /></td>
+  <td>
+    <h2>{{movie.title}}</h2>
+    <div>
+      {{ movie.review }}
+    </div>
+    <div>
+      Added: {{ movie.created }}
+    </div>
+    <div *ngIf="movie.updated">
+      Updated: {{ movie.updated }}
+    </div>
+    <div>
+      <a class="btn" routerLink="/movie-detail/{{ movie.id }}">Edit</a>
+    </div>
+  </td>
+  <td><span *ngIf="movie.rating">{{ movie.rating }}/10</span></td>
+</tr>
+
+<p *ngIf="!movie"><em>Loading...</em></p>
+
+<form *ngIf="movie">
+  <div class="form-group">
+    <label for="title">Title:</label>
+    <input type="text" class="form-control" id="title" name="title" [(ngModel)]="movie.title" /><br>
+  </div>
+  <div class="form-group">
+    <label for="image">Image URL:</label>
+    <input type="text" class="form-control" id="image" name="image" [(ngModel)]="movie.imageUrl" /><br>
+  </div>
+  <div class="form-group">
+    <label for="review">Review:</label>
+    <textarea type="text" class="form-control" id="review" name="review" [(ngModel)]="movie.review"></textarea><br>
+  </div>
+  <div class="form-group">
+    <label for="rating">Rating:</label>
+    <input type="text" class="form-control" id="rating" name="rating" [(ngModel)]="movie.rating" /><br>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="saveMovie()"></button>
+</form>

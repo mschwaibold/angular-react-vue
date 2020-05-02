@@ -1,0 +1,45 @@
+<!--
+///////////////////////////////////////
+//                                   //
+//    Author: Max Schwaibold         //
+//    Date:   15.04.2020             //
+//                                   //
+///////////////////////////////////////
+-->
+
+<h1 id="tableLabel">Movies seen in 2020</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!movies"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="movies">
+  <thead>
+    <tr>
+      <th>Poster</th>
+      <th>Review</th>
+      <th>Rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let movie of movies">
+      <td><img [src]="movie.imageUrl" /></td>
+      <td>
+        <h2>{{movie.title}}</h2>
+        <div>
+          {{ movie.review }}
+        </div>
+        <div>
+          Added: {{ movie.created }}
+        </div>
+        <div *ngIf="movie.updated">
+          Updated: {{ movie.updated }}
+        </div>
+        <div>
+          <a class="btn" routerLink="/movie-detail/{{ movie.id }}">Edit</a>
+        </div>
+      </td>
+      <td><span *ngIf="movie.rating">{{ movie.rating }}/10</span></td>
+    </tr>
+  </tbody>
+</table>
