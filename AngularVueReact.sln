@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{5
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IDP", "IDP\IDP.csproj", "{3582A5D8-B9DE-40B4-A70B-BD644A245FEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoviesR", "MoviesR\MoviesR.csproj", "{0812C9D0-9654-4730-8916-004E2E5B72A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoviesR", "MoviesR\MoviesR.csproj", "{0812C9D0-9654-4730-8916-004E2E5B72A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
