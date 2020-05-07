@@ -23,7 +23,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let movie of movies">
-      <td><img [src]="movie.imageUrl" /></td>
+      <td><img [src]="movie.imageUrl" [alt]="movie.title" /></td>
       <td>
         <h2>{{movie.title}}</h2>
         <div>

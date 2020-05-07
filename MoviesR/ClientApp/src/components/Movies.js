@@ -1,3 +1,10 @@
+///////////////////////////////////////
+//                                   //
+//    Author: Max Schwaibold         //
+//    Date:   05.05.2020             //
+//                                   //
+///////////////////////////////////////
+
 import React, { Component } from 'react';
 
 export class Movies extends Component {
@@ -12,47 +19,49 @@ export class Movies extends Component {
     this.populateMovies();
   }
 
-    static renderMoviesTable(movies) {
-        return (
-            <table className='table table-striped' aria-labelledby="tabelLabel">
-                <thead>
-                    <tr>
-                        <th>Poster</th>
-                        <th>Review</th>
-                        <th>Rating</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {movies.map(movie =>
-                        <tr key={movie.id}>
-                            <td><img src={movie.imageUrl} /></td>
-                            <td>
-                                <h2>{movie.title}</h2>
-                                <div>
-                                    {movie.review}
-                                </div>
-                                <div>
-                                    Added: {movie.created}
-                                </div>
-                                <div>
-                                    Updated: {movie.updated}
-                                </div>
-                                <div>
-                                    <a class="btn btn-outline-dark">Edit</a>
-                                </div>
-                            </td>
-                            <td><span>{movie.rating}/10</span></td >
-                        </tr >
-                    )}
-                </tbody >
-            </table>
-        );
-    }
+  static renderMoviesTable(movies, props) {    
+    return (      
+      <table className='table table-striped' aria-labelledby="tabelLabel">
+        <thead>
+          <tr>
+            <th>Poster</th>
+            <th>Review</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          {movies.map(movie =>
+            <tr key={movie.id}>
+              <td><img src={movie.imageUrl} alt={movie.title} /></td>
+              <td>
+                <h2>{movie.title}</h2>
+                <div>
+                  {movie.review}
+                </div>
+                <div>
+                  Added: {movie.created}
+                </div>
+                <div>
+                  Updated: {movie.updated}
+                </div>
+                {props.appState.isLoggedIn &&
+                  <div>
+                    <a class="btn btn-outline-dark">Edit</a>
+                  </div>
+                }
+              </td>
+              <td><span>{movie.rating}/10</span></td >
+            </tr >
+          )}
+        </tbody >
+      </table>
+    );
+  }
 
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : Movies.renderMoviesTable(this.state.movies);
+      : Movies.renderMoviesTable(this.state.movies, this.props);
 
     return (
       <div>
