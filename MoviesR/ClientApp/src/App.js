@@ -3,6 +3,7 @@ import { Route } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { Movies } from './components/Movies';
+import { MovieDetails } from './components/MovieDetails';
 import { OidcCallback } from './components/OidcCallback';
 import { Auth } from './Auth';
 
@@ -30,6 +31,7 @@ export default class App extends Component {
       <Layout appState={this.state}>
         <Route exact path='/' component={Home} />
         <Route path='/movies' render={() => <Movies appState={this.state} />} />
+        <Route path='/movie-details/:id' render={() => <MovieDetails appState={this.state} />} />
         <Route path='/oidc-callback' component={OidcCallback} />
       </Layout>
     );

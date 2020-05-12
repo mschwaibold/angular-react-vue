@@ -5,23 +5,22 @@
 //                                   //
 ///////////////////////////////////////
 
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 
-export class Movies extends Component {
-  static displayName = Movies.name;
+export function Movies(props) {
+  const [state, setState] = useState({ movies: [], loading: true });
 
-  constructor(props) {
-    super(props);
-    this.state = { movies: [], loading: true };
+  async function populateMovies() {
+    const response = await fetch('https://localhost:44300/movies');
+    const data = await response.json();
+    setState({ movies: data, loading: false });
   }
 
-  componentDidMount() {
-    this.populateMovies();
-  }
+  useEffect(() => { populateMovies(); return undefined; }, []);
 
-  static renderMoviesTable(movies, props) {    
-    return (      
-      <table className='table table-striped' aria-labelledby="tabelLabel">
+  function renderMoviesTable(movies, props) {
+    return (
+      <table className="table table-striped" aria-labelledby="tabelLabel">
         <thead>
           <tr>
             <th>Poster</th>
@@ -46,7 +45,7 @@ export class Movies extends Component {
                 </div>
                 {props.appState.isLoggedIn &&
                   <div>
-                    <a class="btn btn-outline-dark">Edit</a>
+                    <a className="btn btn-outline-dark" href={'movie-details/' + movie.id}>Edit</a>
                   </div>
                 }
               </td>
@@ -58,23 +57,15 @@ export class Movies extends Component {
     );
   }
 
-  render() {
-    let contents = this.state.loading
-      ? <p><em>Loading...</em></p>
-      : Movies.renderMoviesTable(this.state.movies, this.props);
+  let contents = state.loading
+    ? <p><em>Loading...</em></p>
+    : renderMoviesTable(state.movies, props);
 
-    return (
-      <div>
-        <h1 id="tabelLabel" >Movies seen in 2020</h1>
-        <p>This component demonstrates fetching data from the server.</p>
-        {contents}
-      </div>
-    );
-  }
-
-  async populateMovies() {
-    const response = await fetch('https://localhost:44300/movies');
-    const data = await response.json();
-    this.setState({ movies: data, loading: false });
-  }
+  return (
+    <div>
+      <h1 id="tabelLabel" >Movies seen in 2020</h1>
+      <p>This component demonstrates fetching data from the server.</p>
+      {contents}
+    </div>
+  )
 }

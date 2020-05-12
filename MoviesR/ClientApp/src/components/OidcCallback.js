@@ -5,21 +5,14 @@
 //                                   //
 ///////////////////////////////////////
 
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { UserManager } from 'oidc-client';
 
-export class OidcCallback extends Component {
-  static displayName = OidcCallback.name;
+export function OidcCallback() {
 
-  constructor(props) {
-    super(props);
-  }
+  useEffect(() => completeLogin(), []);
 
-  componentDidMount() {
-    this.completeLogin();
-  }
-
-  completeLogin() {
+  function completeLogin() {
     new UserManager({ response_mode: "query" }).signinRedirectCallback().then(function () {
       window.location.href = "/";
     }).catch(function (e) {
@@ -27,9 +20,7 @@ export class OidcCallback extends Component {
     });
   }
 
-  render() {    
-    return (
-      <h1>Completing login. This may take some seconds...</h1>
-    )
-  }
+  return (
+    <h1>Completing login. This may take some seconds...</h1>
+  )
 }

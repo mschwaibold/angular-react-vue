@@ -19,8 +19,7 @@ export class Auth {
       post_logout_redirect_uri: "https://localhost:44303"
     };
 
-    this.userManager = new UserManager(config);
-    this.userManager.getUser().then(user => this._user = user);
+    this.userManager = new UserManager(config);    
 
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
