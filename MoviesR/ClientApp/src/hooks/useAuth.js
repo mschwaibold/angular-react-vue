@@ -5,6 +5,8 @@
 //                                   //
 ///////////////////////////////////////
 
+import { UserManager } from 'oidc-client';
+
 export function useAuth() {
 
   var config = {
@@ -17,9 +19,6 @@ export function useAuth() {
   };
 
   var userManager = new UserManager(config);
-  var _user;
-
-  userManager.getUser().then(user => _user = user);
 
   function login() {
     userManager.signinRedirect();

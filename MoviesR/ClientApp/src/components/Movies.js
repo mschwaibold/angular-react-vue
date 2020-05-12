@@ -6,17 +6,24 @@
 ///////////////////////////////////////
 
 import React, { useEffect, useState } from 'react';
+import { useAuth } from '../hooks/useAuth';
 
 export function Movies(props) {
-  const [state, setState] = useState({ movies: [], loading: true });
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const { isLoggedIn: hasAuth } = useAuth();
 
   async function populateMovies() {
     const response = await fetch('https://localhost:44300/movies');
     const data = await response.json();
-    setState({ movies: data, loading: false });
+    setMovies(data);
+    setLoading(false);
   }
 
   useEffect(() => { populateMovies(); return undefined; }, []);
+  useEffect(() => { hasAuth().then(value => setIsLoggedIn(value)); })
 
   function renderMoviesTable(movies, props) {
     return (
@@ -43,7 +50,7 @@ export function Movies(props) {
                 <div>
                   Updated: {movie.updated}
                 </div>
-                {props.appState.isLoggedIn &&
+                {isLoggedIn &&
                   <div>
                     <a className="btn btn-outline-dark" href={'movie-details/' + movie.id}>Edit</a>
                   </div>
@@ -57,9 +64,9 @@ export function Movies(props) {
     );
   }
 
-  let contents = state.loading
+  let contents = loading
     ? <p><em>Loading...</em></p>
-    : renderMoviesTable(state.movies, props);
+    : renderMoviesTable(movies, props);
 
   return (
     <div>
