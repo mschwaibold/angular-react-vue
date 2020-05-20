@@ -6,25 +6,6 @@
 //                                   //
 ///////////////////////////////////////
 -->
-<tr *ngFor="let movie of movies">
-  <td><img [src]="movie.imageUrl" /></td>
-  <td>
-    <h2>{{movie.title}}</h2>
-    <div>
-      {{ movie.review }}
-    </div>
-    <div>
-      Added: {{ movie.created }}
-    </div>
-    <div *ngIf="movie.updated">
-      Updated: {{ movie.updated }}
-    </div>
-    <div>
-      <a class="btn" routerLink="/movie-detail/{{ movie.id }}">Edit</a>
-    </div>
-  </td>
-  <td><span *ngIf="movie.rating">{{ movie.rating }}/10</span></td>
-</tr>
 
 <p *ngIf="!movie"><em>Loading...</em></p>
 
@@ -45,5 +26,5 @@
     <label for="rating">Rating:</label>
     <input type="text" class="form-control" id="rating" name="rating" [(ngModel)]="movie.rating" /><br>
   </div>
-  <button type="button" class="btn btn-primary" (click)="saveMovie()"></button>
+  <button type="button" class="btn btn-primary" (click)="saveMovie()">Save</button>
 </form>

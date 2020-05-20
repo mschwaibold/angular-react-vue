@@ -6,7 +6,7 @@ export function Layout(props) {
 
   return (
     <div>
-      <NavMenu appState={props.appState} />
+      <NavMenu />
       <Container>
         {props.children}
       </Container>

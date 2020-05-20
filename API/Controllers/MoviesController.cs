@@ -50,6 +50,7 @@ namespace API.Controllers
         }
         
         [HttpGet]
+        [Authorize]
         [Route("{id}")]
         public MovieModel Get(int id)
         {            

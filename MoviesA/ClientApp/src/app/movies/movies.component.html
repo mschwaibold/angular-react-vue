@@ -36,7 +36,7 @@
           Updated: {{ movie.updated }}
         </div>
         <div>
-          <a class="btn btn-outline-dark" *ngIf="auth.isLoggedIn" routerLink="/movie-detail/{{ movie.id }}">Edit</a>
+          <a class="btn btn-outline-dark" *ngIf="auth.isLoggedIn" routerLink="/movie-details/{{ movie.id }}">Edit</a>
         </div>
       </td>
       <td><span *ngIf="movie.rating">{{ movie.rating }}/10</span></td>

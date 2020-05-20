@@ -13,7 +13,7 @@ import { JsonDateInterceptor } from './interceptors/json-date.interceptor';
 import { ApiRequestInterceptor } from './interceptors/api-request.interceptor';
 import { IdentityComponent } from './identity/identity.component';
 import { AuthGuard } from './auth/auth.guard';
-import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
     MoviesComponent,
     OidcCallbackComponent,
     IdentityComponent,
-    MovieDetailComponent
+    MovieDetailsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -34,7 +34,7 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
       //{ path: 'home', component: HomeComponent },
       { path: 'oidc-callback', component: OidcCallbackComponent },
       { path: 'movies', component: MoviesComponent },
-      { path: 'movie-detail/:id', component: MovieDetailComponent, canActivate: [AuthGuard] },
+      { path: 'movie-details/:id', component: MovieDetailsComponent, canActivate: [AuthGuard] },
       { path: 'identity', component: IdentityComponent, canActivate: [AuthGuard] },
       //{ path: '**', component: NotFoundComponent }
     ])

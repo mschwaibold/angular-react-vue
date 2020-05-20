@@ -2,12 +2,36 @@ import React, { useState } from 'react';
 import { Button, Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
+import { useStateValue } from '../state/StateProvider';
+import { Auth } from '../Auth';
 
 export function NavMenu(props) {
   const [state, setState] = useState({ collapsed: true });
+  const [stateValue, dispatch] = useStateValue();
+  const auth = new Auth();
+
+  if (!stateValue.isAuthenticated) {
+    auth.getUser().then(user => {
+      if (user) {
+        auth.isLoggedIn().then(value => {
+          if (value) {
+            dispatch({ type: 'login', payload: user });
+          }
+        })
+      }
+    })
+  }
 
   function toggleNavbar() {
     setState({ collapsed: !state.collapsed });
+  }
+
+  function login() {
+    auth.login();
+  }
+
+  function logout() {
+    auth.logout();
   }
 
   return (
@@ -18,14 +42,13 @@ export function NavMenu(props) {
           <NavbarToggler onClick={toggleNavbar} className="mr-2" />
           <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!state.collapsed} navbar>
             <ul className="navbar-nav flex-grow">
-              {!props.appState.isLoggedIn &&
+              {!stateValue.isAuthenticated ?
                 <NavItem>
-                  <Button className="text-dark" color="link" onClick={props.appState.auth.login}>Login</Button>
+                  <Button className="text-dark" color="link" onClick={login}>Login</Button>
                 </NavItem>
-              }
-              {props.appState.isLoggedIn &&
+                :
                 <NavItem>
-                  <NavLink tag={Link} className="text-dark" to="" onClick={props.appState.auth.logout}>Logout</NavLink>
+                  <NavLink tag={Link} className="text-dark" to="" onClick={logout}>Logout</NavLink>
                 </NavItem>
               }
               <NavItem>

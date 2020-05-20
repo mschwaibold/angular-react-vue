@@ -10,14 +10,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from '../movie.service';
 
 @Component({
-  selector: 'app-movie-detail',
-  templateUrl: './movie-detail.component.html'  
+  selector: 'app-movie-details',
+  templateUrl: './movie-details.component.html'  
 })
-export class MovieDetailComponent implements OnInit {
+export class MovieDetailsComponent implements OnInit {
 
   public movie: Movie;
 
-  constructor(private route: ActivatedRoute,  private router: Router, private movieService: MovieService) {
+  constructor(private route: ActivatedRoute, private router: Router, private movieService: MovieService) {
   }
 
   ngOnInit(): void {
@@ -38,5 +38,4 @@ export class MovieDetailComponent implements OnInit {
       this.movieService.addMovie(this.movie).subscribe();
     }
   }
-
 }

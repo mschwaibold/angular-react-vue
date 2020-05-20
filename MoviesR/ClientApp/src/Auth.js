@@ -19,12 +19,12 @@ export class Auth {
       post_logout_redirect_uri: "https://localhost:44303"
     };
 
-    this.userManager = new UserManager(config);    
+    this.userManager = new UserManager(config);
 
-    this.login = this.login.bind(this);
-    this.logout = this.logout.bind(this);
-    this.getAccessToken = this.getAccessToken.bind(this);
-    this.isLoggedIn = this.isLoggedIn.bind(this);
+    //this.login = this.login.bind(this);
+    //this.logout = this.logout.bind(this);
+    //this.getAccessToken = this.getAccessToken.bind(this);
+    //this.isLoggedIn = this.isLoggedIn.bind(this);
   }
 
   login() {
@@ -33,6 +33,12 @@ export class Auth {
 
   logout() {
     this.userManager.signoutRedirect();
+  }
+
+  getUser() {
+    return this.userManager.getUser().then(user => {
+      return !!user && !user.expired ? user : null;
+    });
   }
 
   getAccessToken() {
