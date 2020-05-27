@@ -1,0 +1,52 @@
+{
+  "name": "movies-v",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "description": "MoviesV",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "bootstrap": "4.5.0",
+    "bootstrap-vue": "2.15.0",
+    "vue": "2.6.11",
+    "vue-router": "3.2.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "3.0.4",
+    "@vue/cli-plugin-eslint": "3.0.4",
+    "@vue/cli-service": "3.0.4",
+    "eslint": "5.6.0",
+    "eslint-plugin-vue": "4.7.1",
+    "vue-template-compiler": "2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
