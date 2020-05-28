@@ -61,7 +61,7 @@ export function MovieDetails(props) {
         </div>
         <div className="form-group">
           <label htmlFor="review">Review:</label>
-          <textarea type="text" className="form-control" id="review" name="review" value={movie.review} onChange={handleInputChange}></textarea><br />
+          <textarea className="form-control" id="review" name="review" value={movie.review} onChange={handleInputChange}></textarea><br />
         </div>
         <div className="form-group">
           <label htmlFor="rating">Rating:</label>

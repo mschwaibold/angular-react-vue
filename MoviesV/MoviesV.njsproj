@@ -34,9 +34,11 @@
     <Content Include="public\favicon.ico" />
     <Content Include="public\index.html" />
     <Content Include="src\App.vue" />
+    <Content Include="src\auth.js" />
     <Content Include="src\components\Home.vue" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="src\store.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="dist\" />

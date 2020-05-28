@@ -31,7 +31,7 @@ namespace API
                                   });
             });
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
 
             services.AddAuthentication("Bearer")
                 .AddJwtBearer(options =>

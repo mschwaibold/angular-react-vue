@@ -46,15 +46,15 @@ namespace API.Controllers
         [HttpGet]
         public IEnumerable<MovieModel> Get()
         {
-            return Movies.OrderBy(m => m.Created);
+            return Movies.OrderBy(m => m.Id);
         }
-        
+
         [HttpGet]
         [Authorize]
         [Route("{id}")]
         public MovieModel Get(int id)
-        {            
-            return Movies.First(m => m.Id == id);
+        {
+            return Movies.FirstOrDefault(m => m.Id == id) ?? new MovieModel();            
         }
 
         [HttpPost]

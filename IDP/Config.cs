@@ -66,6 +66,26 @@ namespace IDP
                         IdentityServerConstants.StandardScopes.Profile,
                         "movieApi"
                     }
+                },
+                // Vue Client
+                new Client
+                {
+                    ClientId = "vue",
+                    ClientName = "Vue Client",
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RequirePkce = true,
+                    RequireClientSecret = false,
+
+                    RedirectUris =           { "https://localhost:44304/oidc-callback" },
+                    PostLogoutRedirectUris = { "https://localhost:44304" },
+                    AllowedCorsOrigins =     { "https://localhost:44304" },
+
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "movieApi"
+                    }
                 }
             };
     }
