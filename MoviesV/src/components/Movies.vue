@@ -87,7 +87,7 @@
                 this.$router.push('/movie-details/' + movie.id);
             },
             deleteMovie(movie) {
-                axios.delete('https://localhost:44300/movies/' + movie.id).then(response => updateList(this));
+                axios.delete('https://localhost:44300/movies/' + movie.id).then(() => updateList(this));
             }
         }
     }

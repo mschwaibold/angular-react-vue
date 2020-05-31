@@ -1,5 +1,6 @@
 ﻿using API.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -18,7 +19,7 @@ namespace API.Controllers
             {
                 Created = new DateTime(2020,1,3).ToUniversalTime(),
                 Id = 1,
-                ImageUrl = "https://m.media-amazon.com/images/M/MV5BMDljNTQ5ODItZmQwMy00M2ExLTljOTQtZTVjNGE2NTg0NGIxXkEyXkFqcGdeQXVyODkzNTgxMDg@._V1_UY209_CR0,0,140,209_AL_.jpg",
+                ImageUrl = "https://m.media-amazon.com/images/M/MV5BMDljNTQ5ODItZmQwMy00M2ExLTljOTQtZTVjNGE2NTg0NGIxXkEyXkFqcGdeQXVyODkzNTgxMDg@._V1_UX182_CR0,0,182,268_AL_.jpg",
                 Rating = 5,
                 Review = "A lot of wasted potential. Visually as good as expected. It feels good to know that it's finally over.",
                 Title = "Star Wars: Episode IX - The Rise of Skywalker",
@@ -28,7 +29,7 @@ namespace API.Controllers
             {
                 Created = new DateTime(2020,1,6).ToUniversalTime(),
                 Id = 2,
-                ImageUrl = "https://m.media-amazon.com/images/M/MV5BMGUwZjliMTAtNzAxZi00MWNiLWE2NzgtZGUxMGQxZjhhNDRiXkEyXkFqcGdeQXVyNjU1NzU3MzE@._V1_UY209_CR0,0,140,209_AL_.jpg",
+                ImageUrl = "https://m.media-amazon.com/images/M/MV5BMGUwZjliMTAtNzAxZi00MWNiLWE2NzgtZGUxMGQxZjhhNDRiXkEyXkFqcGdeQXVyNjU1NzU3MzE@._V1_UX182_CR0,0,182,268_AL_.jpg",
                 Rating = 9,
                 Review = "Very entertaining. Great cast. And that house is really special. My House, My Rules, My Coffee!!",
                 Title = "Knives Out",
@@ -54,15 +55,16 @@ namespace API.Controllers
         [Route("{id}")]
         public MovieModel Get(int id)
         {
-            return Movies.FirstOrDefault(m => m.Id == id) ?? new MovieModel();            
+            return Movies.FirstOrDefault(m => m.Id == id);
         }
 
         [HttpPost]
         [Authorize]
-        public void Post(MovieModel model)
+        public IActionResult Post(MovieModel model)
         {
             model.Id = Movies.Max(m => m.Id) + 1;
             Movies.Add(model);
+            return Ok(model);
         }
 
         [HttpPut]
