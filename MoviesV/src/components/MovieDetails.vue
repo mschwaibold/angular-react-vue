@@ -8,7 +8,7 @@
 <template>
     <div>
         <p v-if="movie == null"><em>Loading...</em></p>
-        <b-form v-else @submit="save(movie)">
+        <b-form v-else @submit.prevent="save(movie)">
             <b-form-group label="Title:" label-for="title">
                 <b-form-input type="text" id="title" v-model="movie.title"></b-form-input>
             </b-form-group>
@@ -22,7 +22,7 @@
                 <b-form-input type="text" id="rating" v-model="movie.rating"></b-form-input>
             </b-form-group>
             <b-button type="submit" variant="primary">Save</b-button>
-        </b-form>       
+        </b-form>
     </div>
 </template>
 
@@ -44,13 +44,13 @@
             return {
                 movie: null
             }
-        },        
+        },
         methods: {
             save(movie) {
                 if (movie.id > 0) {
-                    axios.put('https://localhost:44300/movies', movie).then(this.$router.push('/movies'));
+                    axios.put('https://localhost:44300/movies', movie).then(function () { this.$router.push('/movies'); });
                 } else {
-                    axios.post('https://localhost:44300/movies', movie).then(this.$router.push('/movies'));
+                    axios.post('https://localhost:44300/movies', movie).then(function () { this.$router.push('/movies'); });
                 }
             }
         }
