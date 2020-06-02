@@ -33,12 +33,21 @@
     export default {
         created() {
             let id = this.$route.params.id;
-            axios.get('https://localhost:44300/movies/' + id)
-                .then(response => {
-                    this.movie = response.data;
-                }, error => {
-                    console.log(error);
-                });
+            if (id > 0) {
+                axios.get('https://localhost:44300/movies/' + id)
+                    .then(response => {
+                        this.movie = response.data;
+                    }, error => {
+                        console.log(error);
+                    });
+            } else {
+                this.movie = {
+                    title: undefined,
+                    imageUrl: undefined,
+                    review: undefined,
+                    rating: undefined,
+                }
+            }
         },
         data() {
             return {
@@ -47,10 +56,11 @@
         },
         methods: {
             save(movie) {
+                var router = this.$router;
                 if (movie.id > 0) {
-                    axios.put('https://localhost:44300/movies', movie).then(function () { this.$router.push('/movies'); });
+                    axios.put('https://localhost:44300/movies', movie).then(function () { router.push('/movies'); });
                 } else {
-                    axios.post('https://localhost:44300/movies', movie).then(function () { this.$router.push('/movies'); });
+                    axios.post('https://localhost:44300/movies', movie).then(function () { router.push('/movies'); });
                 }
             }
         }
