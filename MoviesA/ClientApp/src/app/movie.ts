@@ -1,4 +1,4 @@
-interface Movie {
+export interface Movie {
   id: number,
   created: Date,
   imageUrl: string,

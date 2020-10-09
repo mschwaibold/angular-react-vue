@@ -8,6 +8,7 @@
 import { Component, Inject } from '@angular/core';
 import { MovieService } from '../movie.service';
 import { AuthService } from '../auth/auth.service';
+import { Movie } from '../movie';
 
 @Component({
   selector: 'app-movies',
